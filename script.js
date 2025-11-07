@@ -39,10 +39,11 @@ function renderPosts() {
 
     posts.forEach(function(post) {
         const li = document.createElement('li');
+       
         const h3 = document.createElement('h3');
+            h3.textContent = post.title;
         const p = document.createElement('p')
-   
-        p.textContent = post.title;
+            p.textContent = post.content;
     
         li.appendChild(h3)
         li.appendChild(p);
