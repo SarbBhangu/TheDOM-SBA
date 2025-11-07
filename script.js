@@ -18,3 +18,8 @@ function loadPosts() {
             posts = [];
         }
 }
+
+function savePosts() {
+    localStorage.setItem('brainstorm-posts', JSON.stringify(posts));
+}
+
