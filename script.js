@@ -70,5 +70,25 @@ function validateForm() {
 }
 
 
+form.addEventListener('submit', function (event) {
+    event.preventDefault();
 
+        if(!validateForm()) {
+            return;
+        }
+
+        const newPost = {
+            id: Date.now(),
+            title: titleInput.value.trim(),
+            content: contentInput.value.trim(),
+        };
+
+        posts.push(newPost);
+        savePosts()
+        renderPosts()
+        form.reset()
+})
+
+loadPosts();
+renderPosts();
         
