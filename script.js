@@ -39,14 +39,27 @@ function renderPosts() {
 
     posts.forEach(function(post) {
         const li = document.createElement('li');
+            li.dataset.id = String(post.id);
        
         const h3 = document.createElement('h3');
             h3.textContent = post.title;
+       
         const p = document.createElement('p')
             p.textContent = post.content;
+
+        const actions = document.createElement('div');
+            actions.className = 'post-actions';
+
+        const delBtn = document.createElement('button');
+            delBtn.type = 'button';
+            delBtn.className = 'delete-btn';
+            delBtn.textContent = 'Delete';
+            
+        actions.appendChild(delBtn); 
     
         li.appendChild(h3)
         li.appendChild(p);
+        li.appendChild(actions);
         postsList.appendChild(li);
     });
 }
@@ -59,7 +72,7 @@ function validateForm() {
     contentError.textContent = '';
 
         if (titleInput.value.trim() === '') {
-            titleError.textContent = 'Name the Storm';
+            titleError.textContent = 'Title required';
             ok = false;
         }   
         if (contentInput.value.trim() === '') {
@@ -89,6 +102,22 @@ form.addEventListener('submit', function (event) {
         renderPosts()
         form.reset()
 })
+
+
+postsList.addEventListener('click', function (e) {
+  const btn = e.target.closest('button');
+    if (!btn) return;
+
+    if (btn.classList.contains('delete-btn')) {
+        const li = btn.closest('li');
+        if (!li) return;
+
+        const id = Number(li.dataset.id);
+        posts = posts.filter(p => p.id !== id);
+        savePosts();
+        renderPosts();
+  }
+});
 
 loadPosts();
 renderPosts();

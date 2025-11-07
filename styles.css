@@ -136,3 +136,30 @@ button[type="submit"]:hover { filter: brightness(0.95); }
   padding: 0;
   margin: 10px 0 0;
 }
+
+.posts {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0;
+}
+
+.posts li {
+  background: rgba(255,255,255,0.06);
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin: 10px 0;
+  text-align: left;
+  color: #fff;
+}
+
+.post-actions {
+  margin-top: 8px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+
+.delete-btn {
+  background: #e74c3c;
+}
