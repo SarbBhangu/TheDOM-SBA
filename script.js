@@ -37,16 +37,38 @@ function renderPosts() {
         }       
 
 
-posts.forEach(function(post) {
-    const li = document.createElement('li');
-    const h3 = document.createElement('h3');
-    const p = document.createElement('p')
+    posts.forEach(function(post) {
+        const li = document.createElement('li');
+        const h3 = document.createElement('h3');
+        const p = document.createElement('p')
    
-    p.textContent = post.title;
+        p.textContent = post.title;
     
-    li.appendChild(h3)
-    li.appendChild(p);
-    postsList.appendChild(li);
-});
+        li.appendChild(h3)
+        li.appendChild(p);
+        postsList.appendChild(li);
+    });
 }
+
+
+function validateForm() {
+    let ok = true;
+
+    titleError.textContent = '';
+    contentError.textContent = '';
+
+        if (titleInput.value.trim() === '') {
+            titleError.textContent = 'Name the Storm';
+            ok = false;
+        }   
+        if (contentInput.value.trim() === '') {
+            contentError.textContent = 'Content required.'
+            ok = false;
+        }
+
+        return ok;
+}
+
+
+
         
