@@ -73,3 +73,63 @@ h1 {
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
   letter-spacing: 2px;
 }
+
+h2 {
+  font-size: clamp(16px, 4.5vw, 22px);
+  margin-top: 20px;
+  text-transform: uppercase;
+  text-align: center;
+
+  background: linear-gradient(
+    to right,
+    #ff0000,
+    #ff9900,
+    #ffff00,
+    #00ff00,
+    #00ccff,
+    #6633ff,
+    #ff33cc
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+  letter-spacing: 1px;
+}
+
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+  box-shadow: 0 0 5px rgba(255,255,255,0.25);
+  background: #fff;
+}
+
+
+button[type="submit"] {
+  background: #6c5ce7;
+  color: #fff;
+  border: 0;
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+button[type="submit"]:hover { filter: brightness(0.95); }
+
+
+.error {
+  display: block;
+  min-height: 1em;
+  color: #ffb3b3; 
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+
+
+.posts {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0;
+}
