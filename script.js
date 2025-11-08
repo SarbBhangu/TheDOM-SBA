@@ -8,6 +8,9 @@ const postsList = document.getElementById('postsList');
 
 let posts = [];
 
+let editingId = null; 
+const submitBtn = form.querySelector('button[type="submit"]');
+
 
 function loadPosts() {
     const saved = localStorage.getItem('brainstorm-posts');
@@ -50,12 +53,18 @@ function renderPosts() {
         const actions = document.createElement('div');
             actions.className = 'post-actions';
 
+        const editBtn = document.createElement('button');
+            editBtn.type = 'button';
+            editBtn.className = 'edit-btn';
+            editBtn.textContent = 'Edit';
+
         const delBtn = document.createElement('button');
             delBtn.type = 'button';
             delBtn.className = 'delete-btn';
             delBtn.textContent = 'Delete';
             
-        actions.appendChild(delBtn); 
+        actions.appendChild(delBtn);
+        actions.appendChild(editBtn); 
     
         li.appendChild(h3)
         li.appendChild(p);
@@ -91,6 +100,22 @@ form.addEventListener('submit', function (event) {
             return;
         }
 
+        if(editingId !== null) {
+            const i = posts.findIndex(p => p.id === editingId)
+            if (i !== -1) {
+                posts[i].titleInput.value.trim();
+                posts[i].content = contentInput.value.trim();
+            }
+
+            savePosts()
+            renderPosts()
+
+            editingId = null;
+            submitBtn.textContent = 'Add Post'
+            form.rest();
+            return;
+        }
+
         const newPost = {
             id: Date.now(),
             title: titleInput.value.trim(),
@@ -114,9 +139,32 @@ postsList.addEventListener('click', function (e) {
 
         const id = Number(li.dataset.id);
         posts = posts.filter(p => p.id !== id);
+        
+        if (editingId === id) {
+            editingId = null;
+            submitBtn.textContent = 'Add Post'
+            form.reset()
+            return;
+        }
+
         savePosts();
         renderPosts();
+        return;
   }
+        if (btn.classList.contains('edit-btn')) {
+            const li = btn.closest('li')
+            if(!li) return;
+
+            const id = number(li.dataset.id);
+            const post = posts.find(p => p.id === id);
+            if (!post) return;
+
+            titleInput.value = post.title;
+            contentInput.value = post.content;
+
+            editingId = id;
+            submitBtn.textContent = 'Update Post';
+        }
 });
 
 loadPosts();
