@@ -103,7 +103,7 @@ form.addEventListener('submit', function (event) {
         if(editingId !== null) {
             const i = posts.findIndex(p => p.id === editingId)
             if (i !== -1) {
-                posts[i].titleInput.value.trim();
+                posts[i].title = titleInput.value.trim();
                 posts[i].content = contentInput.value.trim();
             }
 
@@ -112,7 +112,7 @@ form.addEventListener('submit', function (event) {
 
             editingId = null;
             submitBtn.textContent = 'Add Post'
-            form.rest();
+            form.reset();
             return;
         }
 
@@ -144,7 +144,6 @@ postsList.addEventListener('click', function (e) {
             editingId = null;
             submitBtn.textContent = 'Add Post'
             form.reset()
-            return;
         }
 
         savePosts();
@@ -155,7 +154,7 @@ postsList.addEventListener('click', function (e) {
             const li = btn.closest('li')
             if(!li) return;
 
-            const id = number(li.dataset.id);
+            const id = Number(li.dataset.id);
             const post = posts.find(p => p.id === id);
             if (!post) return;
 
