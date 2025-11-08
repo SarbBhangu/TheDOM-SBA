@@ -12,22 +12,17 @@ body {
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center; 
 }
 
+
 .container {
-  background: rgba(53, 0, 77, 0.8); 
+  background: rgba(53, 0, 77, 0.8);
   width: 320px;
   max-width: 90vw;
   padding: 25px;
   border-radius: 14px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-
-  
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   text-align: center;
 }
 
